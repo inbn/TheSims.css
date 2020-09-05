@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheSims.css</title>
+    <link rel="stylesheet" href="./thesims.scss">
+</head>
+
+<body>
+    <h1>TheSims.css</h1>
+
+    <p>A “Design System” based on the 2000 life simulation game, <em>The Sims</em>.</p>
+
+    <h2>Components</h2>
+
+    <h3>Button</h3>
+
+    <h4>Rectangle</h4>
+
+    <button type="button">OK</button>
+
+    <h4>Skewed</h4>
+
+    <button type="button">OK</button>
+
+    <h3>Radio</h3>
+
+    <div class="field-row">
+        <input type="radio" id="radio-1" name="first-example">
+        <label for="radio-1">Yes</label>
+    </div>
+    <div class="field-row">
+        <input type="radio" id="radio-2" name="first-example">
+        <label for="radio-2">No</label>
+    </div>
+
+    <h3>Checkbox</h3>
+
+    <div class="field-row">
+        <input type="checkbox" id="checkbox-1">
+        <label for="checkbox-1">This is a checkbox</label>
+    </div>
+
+    <h2>Slider</h2>
+
+    <p>
+        Sliders can rendered by specifying a <code>range</code> type on an <code>input</code> element.
+    </p>
+
+    <div class="field-row flex" style="width: 128px">
+        <label for="range1">Music</label>
+        <input id="range1" type="range" min="1" max="11" value="5" />
+    </div>
+
+    <h2>Modal</h2>
+
+    <div class="modal">
+        <h2>Did you know?</h2>
+        <p>Experienced players will find the keyboard shortcuts for speed control handy
+            <br>` = pause
+            <br>1 = Normal
+            <br>2 = Faster
+            <br>3 = Fastest
+        </p>
+        <button type="button">OK</button>
+    </div>
+</body>
+
+</html>

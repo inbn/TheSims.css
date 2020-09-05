@@ -1,0 +1,447 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --grey-1: #c0c7cb;
+  --blue-1: #00518c;
+  --blue-2: #000052;
+  --blue-3: #062f67;
+  --blue-4: #3959a5;
+  --blue-5: #00ffff;
+  --box-shadow-1: inset -1px -1px 3px 3px rgba(0, 0, 0, 0.9),
+  inset 6px 0 1px 1px rgba(255, 255, 255, 0.1),
+  inset 0 4px 2px 1px rgba(255, 255, 255, 0.6);
+
+  --checkbox-width: 15px;
+  --radio-width: 15px;
+  --radio-label-spacing: 12px;
+
+  --radio-total-width-precalc: var(--radio-width) + var(--radio-label-spacing);
+  --radio-total-width: calc(var(--radio-total-width-precalc));
+  --radio-left: calc(-1 * var(--radio-total-width-precalc));
+  --radio-dot-width: 9px;
+  --radio-dot-top: calc(var(--radio-width) / 2 - var(--radio-dot-width) / 2);
+  --radio-dot-left: calc(
+    -1 * (var(--radio-total-width-precalc)) + var(--radio-width) / 2 - var(
+        --radio-dot-width
+      ) / 2
+  );
+
+  --checkbox-total-width-precalc: var(--checkbox-width) +
+  var(--radio-label-spacing);
+  --checkbox-total-width: calc(var(--checkbox-total-width-precalc));
+  --checkbox-left: calc(-1 * var(--checkbox-total-width-precalc));
+  --checkmark-width: 13px;
+  --checkmark-top: 1px;
+  --checkmark-left: 1px;
+
+  --grouped-element-spacing: 6px;
+
+  font-family: 'Comic Sans MS', cursive;
+  color: var(--grey-1);
+  letter-spacing: 0.04em;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--blue-2);
+  box-shadow: var(--box-shadow-1);
+  padding: 20px;
+}
+
+/**
+ * SCROLLBARS
+ */
+
+::-webkit-scrollbar {
+  width: 18px;
+  background-color: var(--blue-4);
+  border-radius: 6px;
+  box-shadow: inset 1px 0 2px 1px var(--blue-3);
+  border: 1px solid #4b5e8e;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 18px;
+}
+
+::-webkit-scrollbar-track {
+
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: var(--blue-1);
+  background-image: svg-load('./svg/scrollbar-thumb-vertical.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  box-shadow: inset -1px -1px 3px 3px var(--blue-3),
+    inset 2px 2px 2px 1px rgba(255, 255, 255, 0.9);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background-image: svg-load('./svg/scrollbar-thumb-horizontal.svg');
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement,
+::-webkit-scrollbar-button:horizontal:end:increment,
+::-webkit-scrollbar-button:vertical:start:decrement,
+::-webkit-scrollbar-button:vertical:end:increment {
+  display: block;
+  border-radius: 8px;
+  background-color: var(--blue-1);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  box-shadow: inset -1px -1px 3px 3px var(--blue-3),
+    inset 2px 2px 2px 1px rgba(255, 255, 255, 0.9);
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement,
+::-webkit-scrollbar-button:horizontal:end:increment {
+  width: 21px;
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement,
+::-webkit-scrollbar-button:vertical:end:increment {
+  height: 21px;
+}
+
+::-webkit-scrollbar-button:horizontal:start {
+  background-image: svg-load('./svg/arrow-left.svg');
+}
+
+::-webkit-scrollbar-button:horizontal:end {
+  background-image: svg-load('./svg/arrow-right.svg');
+}
+
+::-webkit-scrollbar-button:vertical:start {
+  background-image: svg-load('./svg/arrow-up.svg');
+}
+
+::-webkit-scrollbar-button:vertical:end {
+  background-image: svg-load('./svg/arrow-down.svg');
+}
+
+// The game doesn't appear to use both horizontal and vertical scrollbars
+// anywhere, so I've just used a solid colour
+::-webkit-scrollbar-corner {
+  background-color: var(--blue-2);
+}
+
+/**
+ * HEADINGS
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  margin: 0;
+}
+
+h1 {
+
+}
+
+h2 {
+  font-size: 20px;
+}
+
+/**
+ * INPUTS: RADIO + CHECKBOX
+ */
+
+input[type="radio"],
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+  background: 0;
+  position: fixed;
+  opacity: 0;
+  border: none;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+  line-height: 15px;
+  font-size: 12px;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  margin-left: var(--radio-total-width);
+}
+
+input[type="radio"] + label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * (var(--radio-total-width-precalc)));
+  display: inline-block;
+  width: var(--radio-width);
+  height: var(--radio-width);
+  margin-right: var(--radio-label-spacing);
+  border: 1px solid var(--grey-1);
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.8),
+    inset 1px 1px 1px 0 rgba(0, 0, 0, 0.8);
+  // background-image: url("./svg/radio-border.svg");
+  // background-repeat: no-repeat;
+}
+
+// input[type="radio"]:active + label::before {
+//   background: svg-load("./icon/radio-border-disabled.svg");
+// }
+
+input[type="radio"]:checked + label::before {
+  border-color: var(--blue-5);
+}
+
+input[type="radio"]:checked + label::after {
+  content: "";
+  display: block;
+  width: var(--radio-dot-width);
+  height: var(--radio-dot-width);
+  top: var(--radio-dot-top);
+  left: var(--radio-dot-left);
+  position: absolute;
+  background: svg-load("./svg/radio-dot.svg");
+}
+
+// input[type="radio"]:focus + label,
+// input[type="checkbox"]:focus + label {
+//   outline: 1px dotted #000000;
+// }
+
+// input[type="radio"][disabled] + label::before {
+//   background: svg-load("./icon/radio-border-disabled.svg");
+// }
+
+// input[type="radio"][disabled]:checked + label::after {
+//   background: svg-load("./icon/radio-dot-disabled.svg");
+// }
+
+input[type="checkbox"] + label {
+  position: relative;
+  margin-left: var(--checkbox-total-width);
+}
+
+input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * (var(--checkbox-total-width-precalc)));
+  display: inline-block;
+  width: var(--checkbox-width);
+  height: var(--checkbox-width);
+  border: 1px solid var(--grey-1);
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.8),
+    inset 1px 1px 1px 0 rgba(0, 0, 0, 0.8);
+  margin-right: var(--radio-label-spacing);
+}
+
+input[type="checkbox"]:checked + label::before {
+  border-color: var(--blue-5)
+}
+
+input[type="checkbox"]:checked + label::after {
+  content: "";
+  display: block;
+  width: var(--checkmark-width);
+  height: var(--checkmark-width);
+  position: absolute;
+  top: var(--checkmark-top);
+  left: calc(
+    -1 * (var(--checkbox-total-width-precalc)) + var(--checkmark-left)
+  );
+  background: svg-load("./svg/checkmark.svg");
+}
+
+// input[type="checkbox"][disabled] + label::before {
+//   background: var(--surface);
+// }
+
+// input[type="checkbox"][disabled]:checked + label::after {
+//   background: svg-load("./icon/checkmark-disabled.svg");
+// }
+
+input[type="radio"],
+input[type="checkbox"] {
+  // you can't add hover pseudoclass to a pseudoelement
+  & + label::before:hover {
+    border-color: var(--white);
+  }
+
+  & + label:hover {
+    color: var(--white)
+  }
+}
+
+/**
+ * INPUTS: RANGE
+ */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 13px;
+  width: 7px;
+  background-image: svg-load("./svg/indicator-horizontal.svg");
+  transform: translateY(-5.5px);
+  filter: drop-shadow(0px 0px 1px var(--black));
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 13px;
+  width: 7px;
+  border: 0;
+  border-radius: 0;
+  // For some reason this doesn't work with the 'background-image' property
+  background: svg-load("./svg/indicator-horizontal.svg");
+  filter: drop-shadow(0px 0px 1px var(--black));
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  box-sizing: border-box;
+  background: transparent;
+  border-top: 2px solid var(--grey-1);
+  border-right: 3px solid var(--grey-1);
+  border-bottom: 2px solid var(--grey-1);
+  border-left: 3px solid var(--grey-1);
+  border-radius: 3px;
+  box-shadow: 1px 1px 0 var(--black), inset 1px 1px 0 var(--black);
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  box-sizing: border-box;
+  background: transparent;
+  border-top: 2px solid var(--grey-1);
+  border-right: 3px solid var(--grey-1);
+  border-bottom: 2px solid var(--grey-1);
+  border-left: 3px solid var(--grey-1);
+  border-radius: 3px;
+  box-shadow: 1px 1px 0 var(--black), inset 1px 1px 0 var(--black);
+}
+
+
+/**
+ * BUTTON
+ */
+
+button {
+  font-size: 16px;
+  line-height: 27px;
+  font-family: 'Comic Sans MS', cursive;
+  width: 100px;
+  height: 27px;
+  color: var(--grey-1);
+  position: relative;
+  border: 0;
+  background-color: transparent;
+}
+
+button:hover {
+  color: var(--white);
+}
+
+button::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  /*
+    did some maths here, probably unnecessary
+    tan 20deg = y / 36
+    y / 36 = tan 20deg
+    y = 36 tan 20deg
+    y = 36 * 0.577
+    y = 14.425
+  */
+  width: calc(100px - 14.425px);
+  height: 27px;
+  border-radius: 12px / 16px;
+  transform: skew(-36deg);
+  transform-origin: left bottom;
+  border: 0;
+  background-color: var(--blue-1);
+  box-shadow: -1px -1px 2px 0 var(--black),
+    1.5px 0.5px 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 2px 3px var(--blue-3),
+    inset 2px 1px 1px 2px var(--white);
+}
+
+/**
+ * MODALS
+ */
+
+.modal {
+  width: 547px;
+  height: 278px;
+  position: relative;
+  padding: 21px;
+  box-shadow: var(--box-shadow-1);
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    background-image: svg-load('./img/modal.png');
+    width: 547px;
+    height: 278px;
+  }
+}
+
+/**
+ * FIELD ROW
+ */
+
+.field-row {
+  display: flex;
+  align-items: center;
+}
+
+[class^="field-row"] + [class^="field-row"] {
+  margin-top: var(--grouped-element-spacing);
+}
+
+.field-row > * + * {
+  margin-left: var(--grouped-element-spacing);
+}
+
+.field-row-stacked {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-row-stacked * + * {
+  margin-top: var(--grouped-element-spacing);
+}

@@ -1,0 +1,15 @@
+{
+  "name": "thesims-css",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Iain Bean <iainmbean@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "postcss-inline-svg": "^4.1.0",
+    "postcss-pxtorem": "^5.1.1"
+  },
+  "scripts": {
+    "start": "parcel index.html"
+  }
+}
