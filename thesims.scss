@@ -13,6 +13,7 @@
   --blue-3: #062f67;
   --blue-4: #3959a5;
   --blue-5: #00ffff;
+  --blue-6: #000029;
   --box-shadow-1: inset -1px -1px 3px 3px rgba(0, 0, 0, 0.9),
   inset 6px 0 1px 1px rgba(255, 255, 255, 0.1),
   inset 0 4px 2px 1px rgba(255, 255, 255, 0.6);
@@ -40,18 +41,46 @@
   --checkmark-top: 1px;
   --checkmark-left: 1px;
 
+  --element-spacing: 8px;
   --grouped-element-spacing: 6px;
+
 
   font-family: 'Comic Sans MS', cursive;
   color: var(--grey-1);
   letter-spacing: 0.04em;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: none;
 }
 
 body {
   background-color: var(--blue-2);
   box-shadow: var(--box-shadow-1);
   padding: 20px;
+}
+
+button,
+label,
+input,
+textarea,
+select,
+option {
+  font-family: 'Comic Sans MS', cursive;
+  -webkit-font-smoothing: none;
+}
+
+code {
+  font-family: 'ComicMono', monospace;
+}
+
+/**
+ * FONTS
+ */
+
+@font-face {
+  font-family: "ComicMono";
+  src: url("fonts/ComicMono.woff") format("woff");
+  src: url("fonts/ComicMono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: monospace;
 }
 
 /**
@@ -128,7 +157,7 @@ body {
 }
 
 // The game doesn't appear to use both horizontal and vertical scrollbars
-// anywhere, so I've just used a solid colour
+// anywhere, so I've just used a solid colour for the corner where they meet
 ::-webkit-scrollbar-corner {
   background-color: var(--blue-2);
 }
@@ -156,6 +185,59 @@ h2 {
 }
 
 /**
+ * INPUT LABELS
+ */
+
+label {
+  line-height: 15px;
+  font-size: 12px;
+
+  &.block {
+    display: block;
+    margin-bottom: var(--element-spacing);
+  }
+}
+
+/**
+ * INPUTS: TEXT
+ */
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+  border: 0;
+  border-radius: 9px;
+  background-color: var(--blue-6);
+  font-size: 13px;
+  height: 27px;
+  padding: 4px 9px;
+  color: var(--white);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow:
+    /* Top Left */
+    0 0 1px 3px rgb(0, 0, 48),
+    /* Bottom Right */
+    0 0 1px 4px rgb(0, 0, 74),
+    3px 2px 1px 1px rgba(255, 255, 255, 1),
+    2px 2px 1px 1px rgba(255, 255, 255, 1),
+    /* Inside */
+    inset -1px -1px 1px 4px rgba(0, 0, 48, 0.9),
+    inset 3px 0 1px 1px rgba(255, 255, 255, 0.1),
+    inset 1px 2px 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+textarea {
+  height: auto;
+  // 'resize: none' is bad for usability but included here for an accurate
+  // reproduction — size your textareas appropriately or remove this rule
+  resize: none;
+}
+
+/**
  * INPUTS: RADIO + CHECKBOX
  */
 
@@ -169,12 +251,6 @@ input[type="checkbox"] {
   position: fixed;
   opacity: 0;
   border: none;
-}
-
-input[type="radio"] + label,
-input[type="checkbox"] + label {
-  line-height: 15px;
-  font-size: 12px;
 }
 
 input[type="radio"] + label {
@@ -276,14 +352,16 @@ input[type="checkbox"]:checked + label::after {
 //   background: svg-load("./icon/checkmark-disabled.svg");
 // }
 
+// In the game, the label and the input have independent hover styles,
+// but in CSS you can't style :hover pseudo-class on a pseudo-element so
+// they're styled together here
 input[type="radio"],
 input[type="checkbox"] {
-  // you can't add hover pseudoclass to a pseudoelement
-  & + label::before:hover {
-    border-color: var(--white);
-  }
-
   & + label:hover {
+    &::before {
+      border-color: var(--white);
+    }
+
     color: var(--white)
   }
 }
@@ -356,12 +434,14 @@ button {
   font-size: 16px;
   line-height: 27px;
   font-family: 'Comic Sans MS', cursive;
-  width: 100px;
+  min-width: 100px;
   height: 27px;
   color: var(--grey-1);
   position: relative;
   border: 0;
+  padding: 0 20px;
   background-color: transparent;
+  white-space: nowrap;
 }
 
 button:hover {
@@ -373,27 +453,43 @@ button::before {
   display: block;
   position: absolute;
   z-index: -1;
+  width: 100%;
+  height: 27px;
+  border-radius: 10px;
   top: 0;
   left: 0;
-  /*
-    did some maths here, probably unnecessary
-    tan 20deg = y / 36
-    y / 36 = tan 20deg
-    y = 36 tan 20deg
-    y = 36 * 0.577
-    y = 14.425
-  */
-  width: calc(100px - 14.425px);
-  height: 27px;
-  border-radius: 12px / 16px;
-  transform: skew(-36deg);
-  transform-origin: left bottom;
   border: 0;
   background-color: var(--blue-1);
   box-shadow: -1px -1px 2px 0 var(--black),
     1.5px 0.5px 1px 0 rgba(255, 255, 255, 0.5),
     inset 0 0 2px 3px var(--blue-3),
     inset 2px 1px 1px 2px var(--white);
+}
+
+button.skew {
+  &::before {
+    /*
+      did some maths here, probably unnecessary
+      tan 20deg = y / 36
+      y / 36 = tan 20deg
+      y = 36 tan 20deg
+      y = 36 * 0.577
+      y = 14.425
+    */
+    width: calc(100% - 14.425px);
+    border-radius: 12px / 16px;
+    transform: skew(-36deg);
+    transform-origin: left bottom;
+  }
+}
+
+/**
+ * BUTTON GROUP
+ */
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
 }
 
 /**

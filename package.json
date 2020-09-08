@@ -10,6 +10,7 @@
     "postcss-pxtorem": "^5.1.1"
   },
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html --no-content-hash"
   }
 }
