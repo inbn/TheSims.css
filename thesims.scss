@@ -9,7 +9,7 @@
   --white: #fff;
   --grey-1: #c0c7cb;
   --blue-1: #00518c;
-  --blue-2: #000052;
+  --blue-2: #000c4b;
   --blue-3: #062f67;
   --blue-4: #3959a5;
   --blue-5: #00ffff;
@@ -43,7 +43,6 @@
 
   --element-spacing: 8px;
   --grouped-element-spacing: 6px;
-
 
   font-family: 'Comic Sans MS', cursive;
   color: var(--grey-1);
@@ -156,7 +155,7 @@ code {
   background-image: svg-load('./svg/arrow-down.svg');
 }
 
-// The game doesn't appear to use both horizontal and vertical scrollbars
+// The game doesn't seem to show horizontal and vertical scrollbars together
 // anywhere, so I've just used a solid colour for the corner where they meet
 ::-webkit-scrollbar-corner {
   background-color: var(--blue-2);
@@ -182,6 +181,14 @@ h1 {
 
 h2 {
   font-size: 20px;
+}
+
+/**
+ * LINKS
+ */
+
+a {
+  color: var(--grey-1);
 }
 
 /**
@@ -409,7 +416,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   border-bottom: 2px solid var(--grey-1);
   border-left: 3px solid var(--grey-1);
   border-radius: 3px;
-  box-shadow: 1px 1px 0 var(--black), inset 1px 1px 0 var(--black);
+  box-shadow: 1px 1px 1px var(--black), inset 1px 1px 0 var(--black);
 }
 
 input[type="range"]::-moz-range-track {
@@ -439,13 +446,19 @@ button {
   color: var(--grey-1);
   position: relative;
   border: 0;
-  padding: 0 20px;
+  padding: 0 24px;
   background-color: transparent;
   white-space: nowrap;
+  transition: color 0.05s ease, transform 0.05s ease;
 }
 
 button:hover {
   color: var(--white);
+}
+
+button:active {
+  color: var(--blue-5);
+  transform: translate(2px, 2px);
 }
 
 button::before {
@@ -477,6 +490,7 @@ button.skew {
       y = 14.425
     */
     width: calc(100% - 14.425px);
+    left: -2px;
     border-radius: 12px / 16px;
     transform: skew(-36deg);
     transform-origin: left bottom;
@@ -490,6 +504,12 @@ button.skew {
 .button-group {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: -8px;
+
+  > * {
+    margin-bottom: 8px;
+  }
 }
 
 /**
@@ -497,23 +517,34 @@ button.skew {
  */
 
 .modal {
-  width: 547px;
-  height: 278px;
+  // Responsive design - what's that?
+  max-width: 547px;
+  // height: 278px;
   position: relative;
   padding: 21px;
   box-shadow: var(--box-shadow-1);
 
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.5;
-    background-image: svg-load('./img/modal.png');
-    width: 547px;
-    height: 278px;
+  h2 {
+    text-align: center;
   }
+
+  img {
+    float: left;
+    margin-right: 16px;
+    margin-bottom: 8px;
+  }
+
+  // &::after {
+  //   content: '';
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   opacity: 0.5;
+  //   background-image: url('./img/modal.png');
+  //   width: 547px;
+  //   height: 278px;
+  // }
 }
 
 /**

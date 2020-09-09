@@ -1,99 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TheSims.css</title>
+        <meta
+            name="description"
+            content="A “Design System” inspired by the 2000 life simulation game, The Sims."
+        />
+        <link rel="stylesheet" href="./thesims.scss" />
+        <link rel="icon" type="image/png" href="/docs/img/favicon.png" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheSims.css</title>
-    <link rel="stylesheet" href="./thesims.scss">
-</head>
+    <body>
+        <main>
+            <h1>TheSims.css</h1>
 
-<body>
-    <h1>TheSims.css</h1>
+            <p>
+                A “Design System” inspired by the 2000 life simulation game,
+                <em>The Sims</em>.
+            </p>
 
-    <p>A “Design System” inspired by the 2000 life simulation game, <em>The Sims</em>.</p>
+            <p>
+                This is a mostly classless CSS library which relies on Semantic
+                HTML to work; classes are used only for component variants,
+                grouping elements and modals. The code is adapted from
+                <a href="https://jdan.github.io/98.css/">98.css</a>.
+            </p>
 
-    <p>This is a mostly classless CSS library which relies on Semantic HTML to work; classes are used only for component variants, grouping elements and modals. The code is adapted from <a href="https://jdan.github.io/98.css/">98.css</a>.</p>
+            <h2 id="text-input">Text Input</h2>
 
-    <h2>Components</h2>
+            <div class="field-row">
+                <label for="input-text-1">Enter Last Name:</label>
+                <input type="text" id="input-text-1" name="input-text-1" />
+            </div>
 
-    <h3>Text Input</h3>
+            <h2 id="textarea">Textarea</h2>
 
-    <div class="field-row">
-        <label for="input-text-1">Enter Last Name:</label>
-        <input type="text" id="input-text-1" name="input-text-1">
-    </div>
+            <label for="input-textarea-1" class="block">BIO</label>
+            <textarea
+                type="text"
+                id="input-textarea-1"
+                name="input-textarea-1"
+                cols="40"
+                rows="6"
+            ></textarea>
 
-    <h3>Textarea</h3>
+            <h2 id="button">Button</h2>
 
-    <label for="input-textarea-1" class="block">BIO</label>
-    <textarea type="text" id="input-textarea-1" name="input-textarea-1" cols="40" rows="6"></textarea>
+            <p>
+                Buttons in The Sims come in all shapes and sizes, most of which
+                are not reproduced in this library. For now, there are two
+                types: rectangular (the default) and skewed.
+            </p>
 
-    <h3>Button</h3>
+            <button type="button">OK</button>
 
-    <p>Buttons in The Sims come in all shapes and sizes, most of which are not reproduced in this library. For now, there are two types: rectangular (the default) and skewed.</p>
+            <h3>Skewed</h3>
 
-    <button type="button">OK</button>
+            Add the class <code>skew</code> to give a button a skewed
+            appearance.
 
-    <h4>Skewed</h4>
+            <button type="button" class="skew">OK</button>
 
-    Add the class <code>skew</code> to give a button a skewed appearance.
+            <h2 id="button-group">Button group</h2>
 
-    <button type="button" class="skew">OK</button>
+            Group multiple buttons together using the
+            <code>button-group</code> class.
 
-    <h3>Button group</h3>
+            <div class="button-group">
+                <button type="button" class="skew">Take Job</button>
+                <button type="button" class="skew">Look Again</button>
+                <button type="button" class="skew">End Search</button>
+            </div>
 
-    Group multiple buttons together using the <code>button-group</code> class.
+            <h2 id="radio">Radio</h2>
 
-    <div class="button-group">
-        <button type="button" class="skew">Take Job</button>
-        <button type="button" class="skew">Look Again</button>
-        <button type="button" class="skew">End Search</button>
-    </div>
+            <div class="field-row">
+                <input type="radio" id="radio-1" name="first-example" />
+                <label for="radio-1">Yes</label>
+            </div>
+            <div class="field-row">
+                <input type="radio" id="radio-2" name="first-example" />
+                <label for="radio-2">No</label>
+            </div>
 
-    <h3>Radio</h3>
+            <h2 id="checkbox">Checkbox</h2>
 
-    <div class="field-row">
-        <input type="radio" id="radio-1" name="first-example">
-        <label for="radio-1">Yes</label>
-    </div>
-    <div class="field-row">
-        <input type="radio" id="radio-2" name="first-example">
-        <label for="radio-2">No</label>
-    </div>
+            <div class="field-row">
+                <input type="checkbox" id="checkbox-1" />
+                <label for="checkbox-1">This is a checkbox</label>
+            </div>
 
-    <h3>Checkbox</h3>
+            <h2 id="slider">Slider</h2>
 
-    <div class="field-row">
-        <input type="checkbox" id="checkbox-1">
-        <label for="checkbox-1">This is a checkbox</label>
-    </div>
+            <p>
+                Sliders can be rendered by specifying a <code>range</code> type
+                on an <code>input</code> element.
+            </p>
 
-    <h3>Slider</h3>
+            <div class="field-row">
+                <label for="range1">Music</label>
+                <input
+                    id="range1"
+                    type="range"
+                    min="1"
+                    max="11"
+                    value="5"
+                    style="width: 128px"
+                />
+            </div>
 
-    <p>
-        Sliders can rendered by specifying a <code>range</code> type on an <code>input</code> element.
-    </p>
+            <h2 id="modal">Modal</h2>
 
-    <div class="field-row">
-        <label for="range1">Music</label>
-        <input id="range1" type="range" min="1" max="11" value="5" style="width: 128px" />
-    </div>
+            <p>
+                Create a modal by adding the class <code>modal</code> to an
+                element. Modals usually consist of an image, a heading, some
+                text and one or more actions.
+            </p>
 
-    <h3>Modal</h3>
-
-    <p>Create a modal by adding the class <code>modal</code> to an element.</p>
-
-    <div class="modal">
-        <h2>Did you know?</h2>
-        <p>Experienced players will find the keyboard shortcuts for speed control handy
-            <br>` = pause
-            <br>1 = Normal
-            <br>2 = Faster
-            <br>3 = Fastest
-        </p>
-        <button type="button" class="skew">OK</button>
-    </div>
-</body>
-
+            <div class="modal">
+                <img src="docs/img/speed-controls.png" alt="" />
+                <h2>Did you know?</h2>
+                <p>
+                    Experienced players will find the keyboard shortcuts for
+                    speed control handy <br />` = Pause <br />1 = Normal <br />2
+                    = Faster <br />3 = Fastest
+                </p>
+                <div class="button-group">
+                    <button type="button" class="skew">OK</button>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
