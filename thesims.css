@@ -9,8 +9,8 @@
 @font-face {
   font-family: 'Comic Sans MS';
   src: local('Comic Sans MS'),
-    url('ComicNeue-Regular.woff') format('woff'),
-    url('ComicNeue-Regular.woff2') format('woff2');
+    url('ComicNeue-Regular.woff2') format('woff2'),
+    url('ComicNeue-Regular.woff') format('woff');
   font-weight: normal;
 }
 
