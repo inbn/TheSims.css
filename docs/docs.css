@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'ComicMono';
+  src: url('ComicMono.woff') format('woff');
+  src: url('ComicMono.woff2') format('woff2');
+  font-weight: normal;
+  font-style: monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: 'ComicMono', monospace;
+}
+
+.example {
+  margin: 16px 0;
+  padding: 12px 24px;
+}

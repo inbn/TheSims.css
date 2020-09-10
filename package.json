@@ -3,13 +3,26 @@
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://thesimscss.inbn.dev/",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4",
+    "chokidar": "^3.4.2",
+    "cssnano": "^4.1.10",
+    "dedent": "^0.7.0",
+    "ejs": "^3.1.5",
+    "glob": "^7.1.6",
+    "highlight.js": "^10.2.0",
+    "live-server": "^1.2.1",
+    "mkdirp": "^1.0.4",
+    "postcss-calc": "^7.0.4",
+    "postcss-copy": "^7.1.0",
+    "postcss-css-variables": "^0.17.0",
+    "postcss-inline": "^1.2.0",
     "postcss-inline-svg": "^4.1.0",
+    "postcss-load-config": "^2.1.0",
     "postcss-pxtorem": "^5.1.1"
   },
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html --no-content-hash"
+    "start": "node server.js",
+    "build": "node build.js"
   }
 }

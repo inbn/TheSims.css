@@ -47,7 +47,6 @@
   font-family: 'Comic Sans MS', cursive;
   color: var(--grey-1);
   letter-spacing: 0.04em;
-  -webkit-font-smoothing: none;
 }
 
 body {
@@ -63,23 +62,6 @@ textarea,
 select,
 option {
   font-family: 'Comic Sans MS', cursive;
-  -webkit-font-smoothing: none;
-}
-
-code {
-  font-family: 'ComicMono', monospace;
-}
-
-/**
- * FONTS
- */
-
-@font-face {
-  font-family: "ComicMono";
-  src: url("fonts/ComicMono.woff") format("woff");
-  src: url("fonts/ComicMono.woff2") format("woff2");
-  font-weight: normal;
-  font-style: monospace;
 }
 
 /**
@@ -155,8 +137,10 @@ code {
   background-image: svg-load('./svg/arrow-down.svg');
 }
 
-// The game doesn't seem to show horizontal and vertical scrollbars together
-// anywhere, so I've just used a solid colour for the corner where they meet
+/*
+ * The game doesn't seem to show horizontal and vertical scrollbars together
+ * anywhere, so I've just used a solid colour for the corner where they meet
+ */
 ::-webkit-scrollbar-corner {
   background-color: var(--blue-2);
 }
@@ -176,11 +160,15 @@ h6 {
 }
 
 h1 {
-
+  font-size: 32px;
 }
 
 h2 {
   font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
 }
 
 /**
@@ -198,11 +186,11 @@ a {
 label {
   line-height: 15px;
   font-size: 12px;
+}
 
-  &.block {
-    display: block;
-    margin-bottom: var(--element-spacing);
-  }
+label.block {
+  display: block;
+  margin-bottom: var(--element-spacing);
 }
 
 /**
@@ -239,8 +227,10 @@ textarea {
 
 textarea {
   height: auto;
-  // 'resize: none' is bad for usability but included here for an accurate
-  // reproduction — size your textareas appropriately or remove this rule
+  /**
+   * 'resize: none' is bad for usability but included here for an accurate
+   * reproduction — size your textareas appropriately or else remove this rule
+   */
   resize: none;
 }
 
@@ -278,13 +268,13 @@ input[type="radio"] + label::before {
   border-radius: 50%;
   box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.8),
     inset 1px 1px 1px 0 rgba(0, 0, 0, 0.8);
-  // background-image: url("./svg/radio-border.svg");
-  // background-repeat: no-repeat;
+  /* background-image: url("./svg/radio-border.svg");
+  background-repeat: no-repeat; */
 }
 
-// input[type="radio"]:active + label::before {
-//   background: svg-load("./icon/radio-border-disabled.svg");
-// }
+/* input[type="radio"]:active + label::before {
+  background: svg-load("./icon/radio-border-disabled.svg");
+} */
 
 input[type="radio"]:checked + label::before {
   border-color: var(--blue-5);
@@ -301,18 +291,18 @@ input[type="radio"]:checked + label::after {
   background: svg-load("./svg/radio-dot.svg");
 }
 
-// input[type="radio"]:focus + label,
-// input[type="checkbox"]:focus + label {
-//   outline: 1px dotted #000000;
-// }
+/* input[type="radio"]:focus + label,
+input[type="checkbox"]:focus + label {
+  outline: 1px dotted #000000;
+}
 
-// input[type="radio"][disabled] + label::before {
-//   background: svg-load("./icon/radio-border-disabled.svg");
-// }
+input[type="radio"][disabled] + label::before {
+  background: svg-load("./icon/radio-border-disabled.svg");
+}
 
-// input[type="radio"][disabled]:checked + label::after {
-//   background: svg-load("./icon/radio-dot-disabled.svg");
-// }
+input[type="radio"][disabled]:checked + label::after {
+  background: svg-load("./icon/radio-dot-disabled.svg");
+} */
 
 input[type="checkbox"] + label {
   position: relative;
@@ -351,26 +341,27 @@ input[type="checkbox"]:checked + label::after {
   background: svg-load("./svg/checkmark.svg");
 }
 
-// input[type="checkbox"][disabled] + label::before {
-//   background: var(--surface);
-// }
+/* input[type="checkbox"][disabled] + label::before {
+  background: var(--surface);
+}
 
-// input[type="checkbox"][disabled]:checked + label::after {
-//   background: svg-load("./icon/checkmark-disabled.svg");
-// }
+input[type="checkbox"][disabled]:checked + label::after {
+  background: svg-load("./icon/checkmark-disabled.svg");
+} */
 
-// In the game, the label and the input have independent hover styles,
-// but in CSS you can't style :hover pseudo-class on a pseudo-element so
-// they're styled together here
-input[type="radio"],
-input[type="checkbox"] {
-  & + label:hover {
-    &::before {
-      border-color: var(--white);
-    }
+/**
+ * In the game, the label and the input have independent hover styles,
+ * but in CSS you can't style :hover pseudo-class on a pseudo-element so
+ * they're styled together here
+ */
+input[type="radio"] + label:hover,
+input[type="checkbox"]+ label:hover {
+  color: var(--white)
+}
 
-    color: var(--white)
-  }
+input[type="radio"] + label:hover::before,
+input[type="checkbox"] + label:hover::before {
+  border-color: var(--white);
 }
 
 /**
@@ -401,7 +392,7 @@ input[type="range"]::-moz-range-thumb {
   width: 7px;
   border: 0;
   border-radius: 0;
-  // For some reason this doesn't work with the 'background-image' property
+  /* For some reason this doesn't work with the 'background-image' property */
   background: svg-load("./svg/indicator-horizontal.svg");
   filter: drop-shadow(0px 0px 1px var(--black));
 }
@@ -479,22 +470,20 @@ button::before {
     inset 2px 1px 1px 2px var(--white);
 }
 
-button.skew {
-  &::before {
-    /*
-      did some maths here, probably unnecessary
-      tan 20deg = y / 36
-      y / 36 = tan 20deg
-      y = 36 tan 20deg
-      y = 36 * 0.577
-      y = 14.425
-    */
-    width: calc(100% - 14.425px);
-    left: -2px;
-    border-radius: 12px / 16px;
-    transform: skew(-36deg);
-    transform-origin: left bottom;
-  }
+button.skew::before {
+  /**
+   * did some maths here, probably unnecessary
+   * tan 20deg = y / 36
+   * y / 36 = tan 20deg
+   * y = 36 tan 20deg
+   * y = 36 * 0.577
+   * y = 14.425
+   */
+  width: calc(100% - 14.425px);
+  left: -2px;
+  border-radius: 12px / 16px;
+  transform: skew(-36deg);
+  transform-origin: left bottom;
 }
 
 /**
@@ -506,10 +495,10 @@ button.skew {
   justify-content: space-around;
   flex-wrap: wrap;
   margin-bottom: -8px;
+}
 
-  > * {
-    margin-bottom: 8px;
-  }
+.button-group > * {
+  margin-bottom: 8px;
 }
 
 /**
@@ -517,34 +506,32 @@ button.skew {
  */
 
 .modal {
-  // Responsive design - what's that?
   max-width: 547px;
-  // height: 278px;
   position: relative;
   padding: 21px;
   box-shadow: var(--box-shadow-1);
 
-  h2 {
-    text-align: center;
-  }
+  /* &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    background-image: url('./img/modal.png');
+    width: 547px;
+    height: 278px;
+  } */
+}
 
-  img {
-    float: left;
-    margin-right: 16px;
-    margin-bottom: 8px;
-  }
+.modal h2 {
+  text-align: center;
+}
 
-  // &::after {
-  //   content: '';
-  //   display: block;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   opacity: 0.5;
-  //   background-image: url('./img/modal.png');
-  //   width: 547px;
-  //   height: 278px;
-  // }
+.modal img {
+  float: left;
+  margin-right: 16px;
+  margin-bottom: 8px;
 }
 
 /**

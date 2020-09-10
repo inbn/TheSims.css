@@ -8,8 +8,9 @@
             name="description"
             content="A “Design System” inspired by the 2000 life simulation game, The Sims."
         />
-        <link rel="stylesheet" href="./thesims.scss" />
-        <link rel="icon" type="image/png" href="/docs/img/favicon.png" />
+        <link rel="stylesheet" href="thesims.css" />
+        <link rel="stylesheet" href="docs.css">
+        <link rel="icon" type="image/png" href="/docs/favicon.png" />
     </head>
 
     <body>
@@ -18,25 +19,41 @@
 
             <p>
                 A “Design System” inspired by the 2000 life simulation game,
-                <em>The Sims</em>.
+                <em>The Sims</em>. For the full nostlgia effect, open
+                <a
+                    href="https://www.youtube.com/watch?v=Mtf7pocKg-E"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >this video</a
+                >
+                in another tab.
             </p>
 
-            <p>
-                This is a mostly classless CSS library which relies on Semantic
-                HTML to work; classes are used only for component variants,
-                grouping elements and modals. The code is adapted from
-                <a href="https://jdan.github.io/98.css/">98.css</a>.
-            </p>
+            <h2>Features:</h2>
+
+            <ul>
+                <li>
+                    If you’re using Semantic HTML it ‘just works’ (with the exception of
+                    component variants, grouping elements and modals which require extra classes)
+                </li>
+                <li>Dark mode by default</li>
+                <li>Uses Comic Sans, the world’s most reassuring font</li>
+                <li>Buttons that look like buttons</li>
+                <li>Great for your Sims fansite</li>
+            </ul>
 
             <h2 id="text-input">Text Input</h2>
 
+            <%- example(`
             <div class="field-row">
                 <label for="input-text-1">Enter Last Name:</label>
                 <input type="text" id="input-text-1" name="input-text-1" />
             </div>
+            `) %>
 
             <h2 id="textarea">Textarea</h2>
 
+            <%- example(`
             <label for="input-textarea-1" class="block">BIO</label>
             <textarea
                 type="text"
@@ -45,6 +62,7 @@
                 cols="40"
                 rows="6"
             ></textarea>
+            `) %>
 
             <h2 id="button">Button</h2>
 
@@ -54,28 +72,35 @@
                 types: rectangular (the default) and skewed.
             </p>
 
+            <%- example(`
             <button type="button">OK</button>
+            `) %>
 
             <h3>Skewed</h3>
 
-            Add the class <code>skew</code> to give a button a skewed
-            appearance.
+            <p>Add the class <code>skew</code> to give a button a skewed
+            appearance.</p>
 
+            <%- example(`
             <button type="button" class="skew">OK</button>
+            `) %>
 
             <h2 id="button-group">Button group</h2>
 
-            Group multiple buttons together using the
-            <code>button-group</code> class.
+            <p>Group multiple buttons together using the
+            <code>button-group</code> class.</p>
 
+            <%- example(`
             <div class="button-group">
                 <button type="button" class="skew">Take Job</button>
                 <button type="button" class="skew">Look Again</button>
                 <button type="button" class="skew">End Search</button>
             </div>
+            `) %>
 
             <h2 id="radio">Radio</h2>
 
+            <%- example(`
             <div class="field-row">
                 <input type="radio" id="radio-1" name="first-example" />
                 <label for="radio-1">Yes</label>
@@ -84,13 +109,16 @@
                 <input type="radio" id="radio-2" name="first-example" />
                 <label for="radio-2">No</label>
             </div>
+            `) %>
 
             <h2 id="checkbox">Checkbox</h2>
 
+            <%- example(`
             <div class="field-row">
-                <input type="checkbox" id="checkbox-1" />
+                <input type="checkbox" id="checkbox-1" name="checkbox-1" />
                 <label for="checkbox-1">This is a checkbox</label>
             </div>
+            `) %>
 
             <h2 id="slider">Slider</h2>
 
@@ -99,6 +127,7 @@
                 on an <code>input</code> element.
             </p>
 
+            <%- example(`
             <div class="field-row">
                 <label for="range1">Music</label>
                 <input
@@ -110,6 +139,7 @@
                     style="width: 128px"
                 />
             </div>
+            `) %>
 
             <h2 id="modal">Modal</h2>
 
@@ -119,18 +149,40 @@
                 text and one or more actions.
             </p>
 
+
+            <%- example(`
             <div class="modal">
-                <img src="docs/img/speed-controls.png" alt="" />
+                <img src="speed-controls.png" alt="Speed controls: pause symbol, single right pointing arrow, double right pointing arrow, and triple right pointing arrow.">
                 <h2>Did you know?</h2>
                 <p>
                     Experienced players will find the keyboard shortcuts for
-                    speed control handy <br />` = Pause <br />1 = Normal <br />2
-                    = Faster <br />3 = Fastest
+                    speed control handy <br />
+                    \` = Pause <br />
+                    1 = Normal <br />
+                    2 = Faster <br />
+                    3 = Fastest
                 </p>
                 <div class="button-group">
                     <button type="button" class="skew">OK</button>
                 </div>
             </div>
+            `) %>
+
+            <h2 id="acknowledgements">Acknowledgements</h2>
+
+            <p>
+                The code is adapted from
+                <a href="https://jdan.github.io/98.css/">98.css</a> by Jordan
+                Scales.
+            </p>
+
+            <p>
+                The monospace font is
+                <a href="https://github.com/dtinth/comic-mono-font"
+                    >Comic Mono</a
+                >
+                by Shannon Miwa and dtinth.
+            </p>
         </main>
     </body>
 </html>
