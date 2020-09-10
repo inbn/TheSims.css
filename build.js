@@ -58,6 +58,7 @@ function buildDocs() {
     </div>`;
   }
 
+  fs.mkdirSync('dist', { recursive: true })
   glob('docs/*', (err, files) => {
     if (!err) {
       files.forEach((srcFile) =>
