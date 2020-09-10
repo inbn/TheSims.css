@@ -11,11 +11,33 @@ body {
   padding: 0;
 }
 
+main {
+  padding: 21px;
+  max-width: 80ch;
+  margin: 0 auto;
+}
+
+main > * + * {
+  margin-top: 1em;
+}
+
+h1 {
+  text-align: center;
+}
+
 code {
   font-family: 'ComicMono', monospace;
 }
 
 .example {
   margin: 16px 0;
-  padding: 12px 24px;
+  padding: 0 24px;
+}
+
+.example details {
+  margin-top: 8px;
+}
+
+.example code {
+  white-space: break-spaces;
 }

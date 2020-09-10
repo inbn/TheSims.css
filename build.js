@@ -59,7 +59,7 @@ function buildDocs() {
   }
 
   fs.mkdirSync('dist', { recursive: true })
-  glob('docs/*', (err, files) => {
+  glob('{docs,fonts}/*', (err, files) => {
     if (!err) {
       files.forEach((srcFile) =>
         fs.copyFileSync(srcFile, path.join('dist', path.basename(srcFile)))
