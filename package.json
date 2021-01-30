@@ -1,8 +1,8 @@
 {
-  "name": "thesims-css",
-  "version": "0.1.0",
+  "name": "thesims.css",
+  "version": "0.1.1",
   "description": "A “Design System” inspired by the 2000 life simulation game, The Sims.",
-  "main": "index.js",
+  "main": "dist/thesims.css",
   "license": "MIT",
   "homepage": "https://thesimscss.inbn.dev/",
   "devDependencies": {
