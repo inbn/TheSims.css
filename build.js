@@ -42,8 +42,13 @@ function buildDocs() {
   }
 
   const template = fs.readFileSync('docs/index.html.ejs', 'utf-8');
+  const magicBrackets = /\[\[(.*)\]\]/g;
+
+  function escapeHTML(html) {
+    return hljs.highlight('html', html.replace(magicBrackets, '')).value;
+  }
+
   function example(code) {
-    const magicBrackets = /\[\[(.*)\]\]/g;
     const dedented = dedent(code);
     const inline = dedented.replace(magicBrackets, '$1');
     const escaped = hljs.highlight('html', dedented.replace(magicBrackets, ''))
@@ -58,7 +63,7 @@ function buildDocs() {
     </div>`;
   }
 
-  fs.mkdirSync('dist', { recursive: true })
+  fs.mkdirSync('dist', { recursive: true });
   glob('{docs,fonts}/*', (err, files) => {
     if (!err) {
       files.forEach((srcFile) =>
@@ -68,7 +73,7 @@ function buildDocs() {
   });
   fs.writeFileSync(
     path.join(__dirname, '/dist/index.html'),
-    ejs.render(template, { getNewId, getCurrentId, example })
+    ejs.render(template, { getNewId, getCurrentId, escapeHTML, example })
   );
 }
 

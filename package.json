@@ -26,5 +26,13 @@
     "start": "node server.js",
     "build": "node build.js",
     "release": "npm run build && npm publish"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/inbn/TheSims.css.git"
+  },
+  "keywords": [
+    "css",
+    "thesims"
+  ]
 }
