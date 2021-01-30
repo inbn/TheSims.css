@@ -1,6 +1,7 @@
 {
   "name": "thesims-css",
   "version": "0.1.0",
+  "description": "A “Design System” inspired by the 2000 life simulation game, The Sims.",
   "main": "index.js",
   "license": "MIT",
   "homepage": "https://thesimscss.inbn.dev/",
@@ -23,6 +24,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build": "node build.js"
+    "build": "node build.js",
+    "release": "npm run build && npm publish"
   }
 }
